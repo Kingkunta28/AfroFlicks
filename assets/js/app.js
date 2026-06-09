@@ -55,7 +55,7 @@ class AfroFlicks {
    */
   setupServiceWorker() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker.register('./service-worker.js')
         .catch(err => console.log('Service Worker registration failed:', err));
     }
   }
@@ -166,12 +166,11 @@ class AfroFlicks {
    * Create movie card HTML
    */
   createMovieCard(movie) {
-    // Build image URL with CORS proxy fallback
+    // Use CORS proxy for images
     let posterUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"%3E%3Crect fill="%23333" width="200" height="300"/%3E%3C/svg%3E';
     
     if (movie.poster_path) {
-      // Try direct TMDB URL first
-      posterUrl = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
+      posterUrl = `https://images.weserv.nl/?url=image.tmdb.org/t/p/w342${movie.poster_path}`;
     }
 
     const isFavorite = this.favorites.has(movie.id);
@@ -180,9 +179,6 @@ class AfroFlicks {
     const releaseYear = movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A';
     const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
 
-    // SVG placeholder as fallback
-    const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"%3E%3Crect fill="%23333" width="200" height="300"/%3E%3C/svg%3E';
-
     return `
       <div class="movie-card" data-movie-id="${movie.id}">
         <div class="card-image">
@@ -190,16 +186,6 @@ class AfroFlicks {
             src="${posterUrl}" 
             alt="${this.escapeHtml(movie.title)}"
             class="movie-poster"
-            loading="eager"
-            data-poster-path="${movie.poster_path || ''}"
-            onerror="
-              const fallbackUrl = 'https://images.weserv.nl/?url=image.tmdb.org/t/p/w342${movie.poster_path || ''}';
-              if (this.src !== fallbackUrl && '${movie.poster_path}') {
-                this.src = fallbackUrl;
-              } else {
-                this.src = '${placeholderSvg}';
-              }
-            "
             style="background-color: #333; display: block;"
           />
           <div class="card-overlay">

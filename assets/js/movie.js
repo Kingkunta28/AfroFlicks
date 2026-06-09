@@ -125,16 +125,6 @@ class MoviePage extends AfroFlicks {
         src="${posterUrl}" 
         alt="${this.escapeHtml(this.movieData.title)}"
         class="movie-poster-large"
-        loading="eager"
-        data-poster-path="${this.movieData.poster_path || ''}"
-        onerror="
-          const fallbackUrl = 'https://images.weserv.nl/?url=image.tmdb.org/t/p/w342${this.movieData.poster_path || ''}';
-          if (this.src !== fallbackUrl && '${this.movieData.poster_path}') {
-            this.src = fallbackUrl;
-          } else {
-            this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22300%22/%3E%3C/svg%3E';
-          }
-        "
         style="background-color: #333; display: block;"
       />
       <div class="movie-info-header">
