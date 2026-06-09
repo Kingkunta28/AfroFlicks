@@ -102,7 +102,7 @@ class MoviePage extends AfroFlicks {
     if (!this.movieData) return;
 
     const backdropUrl = this.movieData.backdrop_path
-      ? `https://image.tmdb.org/t/p/w1280${this.movieData.backdrop_path}`
+      ? `https://images.weserv.nl/?url=image.tmdb.org/t/p/w1280${this.movieData.backdrop_path}`
       : 'linear-gradient(135deg, #FFD700 0%, #FFC700 100%)';
 
     document.getElementById('movie-backdrop').style.backgroundImage = `url('${backdropUrl}')`;
@@ -125,7 +125,16 @@ class MoviePage extends AfroFlicks {
         src="${posterUrl}" 
         alt="${this.escapeHtml(this.movieData.title)}"
         class="movie-poster-large"
-        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22300%22/%3E%3C/svg%3E'"
+        loading="eager"
+        data-poster-path="${this.movieData.poster_path || ''}"
+        onerror="
+          const fallbackUrl = 'https://images.weserv.nl/?url=image.tmdb.org/t/p/w342${this.movieData.poster_path || ''}';
+          if (this.src !== fallbackUrl && '${this.movieData.poster_path}') {
+            this.src = fallbackUrl;
+          } else {
+            this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22300%22/%3E%3C/svg%3E';
+          }
+        "
         style="background-color: #333; display: block;"
       />
       <div class="movie-info-header">
