@@ -2,7 +2,7 @@
 // Update TMDB_API_KEY with your actual API token from https://www.themoviedb.org/settings/api
 
 const CONFIG = {
-  TMDB_API_KEY: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjA4YzI4ZjJmZjc3MDYxNmQ2NTMwNzQ4YWNkYjIzNiIsInN1YiI6IjY1ZGE2NjNjNjQ5OTI1MDE2MzQ2OTY3YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CwJkKa05i39MpRd0zxLEXrR_l6n03Vt-S4_1A8M_f4E',
+  TMDB_API_KEY: 'c9829e4d684c68504284ad5adb22c69c',
   TMDB_BASE_URL: 'https://api.themoviedb.org/3',
   TMDB_IMAGE_BASE_URL: 'https://image.tmdb.org/t/p',
   TMDB_IMAGE_SIZES: {

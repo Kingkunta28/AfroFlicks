@@ -76,11 +76,11 @@ class AfroFlicks {
       const timeout = setTimeout(() => this.abortController.abort(), CONFIG.API_TIMEOUT);
 
       const url = new URL(`${CONFIG.TMDB_BASE_URL}${endpoint}`);
+      url.searchParams.append('api_key', CONFIG.TMDB_API_KEY);
       Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
       const response = await fetch(url.toString(), {
         headers: {
-          'Authorization': `Bearer ${CONFIG.TMDB_API_KEY}`,
           'Content-Type': 'application/json;charset=utf-8'
         },
         signal: this.abortController.signal
