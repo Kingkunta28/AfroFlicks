@@ -125,9 +125,8 @@ class MoviePage extends AfroFlicks {
         src="${posterUrl}" 
         alt="${this.escapeHtml(this.movieData.title)}"
         class="movie-poster-large"
-        loading="lazy"
-        crossorigin="anonymous"
-        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENo Image%3C/text%3E%3C/svg%3E'"
+        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22300%22/%3E%3C/svg%3E'"
+        style="background-color: #333; display: block;"
       />
       <div class="movie-info-header">
         <h1>${this.escapeHtml(this.movieData.title)}</h1>
@@ -258,7 +257,7 @@ class MoviePage extends AfroFlicks {
 
     const cast = this.movieData.credits.cast.slice(0, 12);
     const crew = this.movieData.credits.crew
-      .filter(member => ['Director', 'Writer', 'Producer'].includes(member.job))
+      .filter(member => ['Director', 'Writer', 'Producer'].includes(membermore .job))
       .slice(0, 6);
 
     let crewHtml = '';
@@ -273,9 +272,8 @@ class MoviePage extends AfroFlicks {
                   src=\"https://image.tmdb.org/t/p/w185${member.profile_path}\"
                   alt=\"${this.escapeHtml(member.name)}\"
                   class=\"cast-image\"
-                  loading=\"lazy\"
-                  crossorigin=\"anonymous\"
-                  onerror=\"this.style.backgroundColor='var(--color-bg-surface)'\"
+                  onerror=\"this.style.backgroundColor='var(--color-bg-surface)'; this.style.display='block';\"
+                  style=\"background-color: var(--color-bg-surface); display: block;\"
                 />
               ` : `<div class="cast-image" style="background-color: var(--color-bg-surface);"></div>`}
               <p class="cast-name">${this.escapeHtml(member.name)}</p>
@@ -296,9 +294,8 @@ class MoviePage extends AfroFlicks {
                 src="https://image.tmdb.org/t/p/w185${member.profile_path}"
                 alt="${this.escapeHtml(member.name)}"
                 class="cast-image"
-                loading="lazy"
-                crossorigin="anonymous"
-                onerror="this.style.backgroundColor='var(--color-bg-surface)'"
+                onerror=\"this.style.backgroundColor='var(--color-bg-surface)'; this.style.display='block';\"
+                style=\"background-color: var(--color-bg-surface); display: block;\"
               />
             ` : `<div class="cast-image" style="background-color: var(--color-bg-surface);"></div>`}
             <p class="cast-name">${this.escapeHtml(member.name)}</p>
@@ -353,8 +350,8 @@ class MoviePage extends AfroFlicks {
                   alt="${provider.provider_name}"
                   class="provider-logo"
                   title="${provider.provider_name}"
-                  loading="lazy"
-                  crossorigin="anonymous"
+                  style="background-color: var(--color-bg-surface); display: block;"
+                  onerror="this.style.display='none';"
                 />
                 <span class="provider-name">${provider.provider_name}</span>
               </div>
@@ -376,8 +373,8 @@ class MoviePage extends AfroFlicks {
                   alt="${provider.provider_name}"
                   class="provider-logo"
                   title="${provider.provider_name}"
-                  loading="lazy"
-                  crossorigin="anonymous"
+                  style="background-color: var(--color-bg-surface); display: block;"
+                  onerror="this.style.display='none';"
                 />
                 <span class="provider-name">${provider.provider_name}</span>
               </div>
