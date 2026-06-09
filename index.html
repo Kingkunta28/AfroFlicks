@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AfroFlicks - Africa's Movies, One Click Away. Discover African movies and stream your favorites. Premium movie discovery platform with ratings, trailers, and streaming providers.">
+  <meta name="keywords" content="African movies, streaming, TMDB, movie discovery, trailers">
+  <meta name="theme-color" content="#000000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta property="og:title" content="AfroFlicks - Africa's Movies, One Click Away">
+  <meta property="og:description" content="Discover African movies and stream your favorites. Premium movie discovery platform.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://afroflicks.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AfroFlicks - Africa's Movies, One Click Away">
+  <meta name="twitter:description" content="Discover African movies and stream your favorites. Premium movie discovery platform.">
+  <link rel="canonical" href="https://afroflicks.com">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <title>AfroFlicks - Africa's Movies, One Click Away</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AfroFlicks",
+    "url": "https://afroflicks.com",
+    "description": "Africa's premium movie discovery platform",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://afroflicks.com/search.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header role="banner">
+    <div class="container">
+      <div class="header-container">
+        <a href="/" class="logo" aria-label="AfroFlicks home">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 9.5L9 17V7l5 5.5z"/>
+          </svg>
+          <span>AFROFLICKS</span>
+        </a>
+
+        <nav role="navigation" aria-label="Main navigation">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/search.html" class="nav-link">Search</a>
+          <a href="/favorites.html" class="nav-link">Favorites</a>
+          <a href="/watchlater.html" class="nav-link">Watch Later</a>
+          <a href="/about.html" class="nav-link">About</a>
+        </nav>
+
+        <div class="search-bar">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search movies..." 
+            aria-label="Search for movies"
+            autocomplete="off"
+          >
+          <div id="search-results" aria-live="polite" aria-label="Search results"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" aria-label="Featured movie">
+    <div class="hero-background" id="hero-backdrop"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>AFROFLICKS</h1>
+        <p>Africa's Movies, One Click Away</p>
+        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+          Discover the best African cinema with premium movie data, trailers, ratings, and streaming providers.
+        </p>
+        <div class="hero-actions">
+          <a href="#trending" class="btn btn-primary">Explore Movies</a>
+          <a href="#popular" class="btn btn-secondary">Trending Today</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main role="main">
+    <div class="container">
+      <!-- Ad Banner -->
+      <div style="margin-bottom: var(--spacing-2xl); min-height: 90px; background-color: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+        <p>Advertisement - Google AdSense Banner</p>
+      </div>
+
+      <!-- Trending Today -->
+      <section class="section" id="trending">
+        <h2 class="section-title">Trending Today</h2>
+        <div class="movies-grid" id="trending-movies"></div>
+        <div id="infinite-scroll-sentinel"></div>
+      </section>
+
+      <!-- Popular Movies -->
+      <section class="section" id="popular">
+        <h2 class="section-title">Popular Movies</h2>
+        <div class="movies-grid" id="popular-movies"></div>
+      </section>
+
+      <!-- Ad Banner -->
+      <div style="margin: var(--spacing-2xl) 0; min-height: 90px; background-color: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+        <p>Advertisement - In-Feed Banner</p>
+      </div>
+
+      <!-- Top Rated -->
+      <section class="section">
+        <h2 class="section-title">Top Rated</h2>
+        <div class="movies-grid" id="top-rated-movies"></div>
+      </section>
+
+      <!-- Coming Soon -->
+      <section class="section">
+        <h2 class="section-title">Coming Soon</h2>
+        <div class="movies-grid" id="upcoming-movies"></div>
+      </section>
+
+      <!-- Genres Section -->
+      <section class="section">
+        <h2 class="section-title">Browse by Genre</h2>
+        <div class="movies-grid" id="genres-container"></div>
+      </section>
+
+      <!-- Ad Banner -->
+      <div style="margin: var(--spacing-2xl) 0; min-height: 90px; background-color: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+        <p>Advertisement - Banner</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About AfroFlicks</h4>
+          <ul>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/privacy.html">Terms of Service</a></li>
+            <li><a href="mailto:support@afroflicks.com">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Streaming Partners</h4>
+          <ul>
+            <li><a href="https://www.netflix.com" target="_blank" rel="noopener">Netflix</a></li>
+            <li><a href="https://www.showmax.com" target="_blank" rel="noopener">Showmax</a></li>
+            <li><a href="https://www.amazon.com/Prime-Video/" target="_blank" rel="noopener">Prime Video</a></li>
+            <li><a href="https://www.apple.com/apple-tv-plus/" target="_blank" rel="noopener">Apple TV+</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Data Source</h4>
+          <ul>
+            <li><a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB API</a></li>
+            <li><a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">API Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AfroFlicks. All rights reserved. Powered by TMDB.</p>
+        <p style="font-size: 0.875rem;">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile Banner -->
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background-color: var(--color-bg-surface); border-top: 1px solid var(--color-border); display: none; align-items: center; justify-content: center; color: var(--color-text-secondary); z-index: 50; max-width: 480px;">
+    <p>Advertisement - Sticky Mobile Banner</p>
+  </div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/index.js"></script>
+</body>
+</html>

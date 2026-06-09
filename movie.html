@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Movie Details - AfroFlicks">
+  <meta property="og:title" content="Movie Details">
+  <meta property="og:type" content="video.movie">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://afroflicks.com/movie.html">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <title>Movie Details - AfroFlicks</title>
+</head>
+<body>
+  <!-- Header -->
+  <header role="banner">
+    <div class="container">
+      <div class="header-container">
+        <a href="/" class="logo" aria-label="AfroFlicks home">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 9.5L9 17V7l5 5.5z"/>
+          </svg>
+          <span>AFROFLICKS</span>
+        </a>
+
+        <nav role="navigation" aria-label="Main navigation">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/search.html" class="nav-link">Search</a>
+          <a href="/favorites.html" class="nav-link">Favorites</a>
+          <a href="/watchlater.html" class="nav-link">Watch Later</a>
+          <a href="/about.html" class="nav-link">About</a>
+        </nav>
+
+        <div class="search-bar">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search movies..." 
+            aria-label="Search for movies"
+            autocomplete="off"
+          >
+          <div id="search-results" aria-live="polite" aria-label="Search results"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Movie Header -->
+  <section class="movie-header" id="movie-header-section">
+    <div class="movie-backdrop" id="movie-backdrop"></div>
+    <div class="container">
+      <div class="movie-header-content" id="movie-header-content">
+        <!-- Filled by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main role="main">
+    <div class="container">
+      <!-- Ad Banner -->
+      <div style="margin-bottom: var(--spacing-2xl); min-height: 90px; background-color: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+        <p>Advertisement - Google AdSense Banner</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" id="movie-tabs">
+        <button class="tab active" data-tab="overview" aria-selected="true">Overview</button>
+        <button class="tab" data-tab="cast" aria-selected="false">Cast</button>
+        <button class="tab" data-tab="streaming" aria-selected="false">Streaming</button>
+        <button class="tab" data-tab="similar" aria-selected="false">Similar Movies</button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div class="tab-content active" id="overview" role="tabpanel">
+        <div id="overview-content"></div>
+        
+        <!-- Affiliate Section -->
+        <section class="affiliate-section">
+          <h3>Watch Now</h3>
+          <p style="margin-bottom: var(--spacing-lg);">Support us by using our affiliate links to watch this movie:</p>
+          <div style="display: flex; gap: var(--spacing-lg); flex-wrap: wrap;">
+            <a href="https://www.nordvpn.com" target="_blank" rel="noopener" class="affiliate-button">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+              </svg>
+              Unlock Global Streaming (NordVPN)
+            </a>
+            <a href="https://www.showmax.com" target="_blank" rel="noopener" class="affiliate-button">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+              Watch on Showmax
+            </a>
+            <a href="https://www.amazon.com/Prime-Video/" target="_blank" rel="noopener" class="affiliate-button">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              Watch on Prime Video
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-content" id="cast" role="tabpanel">
+        <div id="cast-content"></div>
+      </div>
+
+      <div class="tab-content" id="streaming" role="tabpanel">
+        <div id="streaming-content"></div>
+      </div>
+
+      <div class="tab-content" id="similar" role="tabpanel">
+        <div id="similar-content"></div>
+      </div>
+
+      <!-- Ad Banner -->
+      <div style="margin: var(--spacing-2xl) 0; min-height: 90px; background-color: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+        <p>Advertisement - In-Feed Banner</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About AfroFlicks</h4>
+          <ul>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/privacy.html">Terms of Service</a></li>
+            <li><a href="mailto:support@afroflicks.com">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Streaming Partners</h4>
+          <ul>
+            <li><a href="https://www.netflix.com" target="_blank" rel="noopener">Netflix</a></li>
+            <li><a href="https://www.showmax.com" target="_blank" rel="noopener">Showmax</a></li>
+            <li><a href="https://www.amazon.com/Prime-Video/" target="_blank" rel="noopener">Prime Video</a></li>
+            <li><a href="https://www.apple.com/apple-tv-plus/" target="_blank" rel="noopener">Apple TV+</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Data Source</h4>
+          <ul>
+            <li><a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB API</a></li>
+            <li><a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">API Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AfroFlicks. All rights reserved. Powered by TMDB.</p>
+        <p style="font-size: 0.875rem;">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/movie.js"></script>
+</body>
+</html>
