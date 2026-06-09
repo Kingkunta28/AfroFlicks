@@ -37,7 +37,7 @@ class HomePage extends AfroFlicks {
       if (data.results.length > 0) {
         const movie = data.results[0];
         const backdrop = movie.backdrop_path
-          ? `${CONFIG.TMDB_IMAGE_BASE_URL}/w1280${movie.backdrop_path}`
+          ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`
           : 'linear-gradient(135deg, #FFD700 0%, #FFC700 100%)';
         
         const heroBackdrop = document.getElementById('hero-backdrop');

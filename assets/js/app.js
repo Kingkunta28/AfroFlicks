@@ -167,14 +167,17 @@ class AfroFlicks {
    */
   createMovieCard(movie) {
     const posterUrl = movie.poster_path
-      ? `${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.TMDB_IMAGE_SIZES.poster}${movie.poster_path}`
-      : 'assets/images/placeholder.png';
+      ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
+      : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"%3E%3Crect fill="%23333" width="200" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em"%3ENo Image Available%3C/text%3E%3C/svg%3E';
 
     const isFavorite = this.favorites.has(movie.id);
     const isWatchLater = this.watchLater.has(movie.id);
 
     const releaseYear = movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A';
     const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+
+    // SVG placeholder as fallback
+    const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"%3E%3Crect fill="%23333" width="200" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
 
     return `
       <div class="movie-card" data-movie-id="${movie.id}">
@@ -184,7 +187,8 @@ class AfroFlicks {
             alt="${this.escapeHtml(movie.title)}"
             loading="lazy"
             class="movie-poster"
-            onerror="this.src='assets/images/placeholder.png'"
+            onerror="this.src='${placeholderSvg}';this.style.backgroundColor='#333';"
+            crossorigin="anonymous"
           />
           <div class="card-overlay">
             <div class="card-actions">

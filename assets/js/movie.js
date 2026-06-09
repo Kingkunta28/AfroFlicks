@@ -74,7 +74,7 @@ class MoviePage extends AfroFlicks {
         this.movieData.title,
         this.movieData.overview,
         this.movieData.poster_path 
-          ? `${CONFIG.TMDB_IMAGE_BASE_URL}/w500${this.movieData.poster_path}`
+          ? `https://image.tmdb.org/t/p/w500${this.movieData.poster_path}`
           : null
       );
 
@@ -102,14 +102,15 @@ class MoviePage extends AfroFlicks {
     if (!this.movieData) return;
 
     const backdropUrl = this.movieData.backdrop_path
-      ? `${CONFIG.TMDB_IMAGE_BASE_URL}/w1280${this.movieData.backdrop_path}`
+      ? `https://image.tmdb.org/t/p/w1280${this.movieData.backdrop_path}`
       : 'linear-gradient(135deg, #FFD700 0%, #FFC700 100%)';
 
     document.getElementById('movie-backdrop').style.backgroundImage = `url('${backdropUrl}')`;
 
+    const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"%3E%3Crect fill="%23333" width="200" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
     const posterUrl = this.movieData.poster_path
-      ? `${CONFIG.TMDB_IMAGE_BASE_URL}/w342${this.movieData.poster_path}`
-      : 'assets/images/placeholder.png';
+      ? `https://image.tmdb.org/t/p/w342${this.movieData.poster_path}`
+      : placeholderSvg;
 
     const releaseDate = this.movieData.release_date ? new Date(this.movieData.release_date).getFullYear() : 'N/A';
     const rating = this.movieData.vote_average ? this.movieData.vote_average.toFixed(1) : 'N/A';
@@ -125,7 +126,8 @@ class MoviePage extends AfroFlicks {
         alt="${this.escapeHtml(this.movieData.title)}"
         class="movie-poster-large"
         loading="lazy"
-        onerror="this.src='assets/images/placeholder.png'"
+        crossorigin="anonymous"
+        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22%3E%3Crect fill=%22%23333%22 width=%22200%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENo Image%3C/text%3E%3C/svg%3E'"
       />
       <div class="movie-info-header">
         <h1>${this.escapeHtml(this.movieData.title)}</h1>
@@ -268,11 +270,12 @@ class MoviePage extends AfroFlicks {
             <div class="cast-member">
               ${member.profile_path ? `
                 <img 
-                  src="${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.TMDB_IMAGE_SIZES.profile}${member.profile_path}"
-                  alt="${this.escapeHtml(member.name)}"
-                  class="cast-image"
-                  loading="lazy"
-                  onerror="this.src='assets/images/placeholder.png'"
+                  src=\"https://image.tmdb.org/t/p/w185${member.profile_path}\"
+                  alt=\"${this.escapeHtml(member.name)}\"
+                  class=\"cast-image\"
+                  loading=\"lazy\"
+                  crossorigin=\"anonymous\"
+                  onerror=\"this.style.backgroundColor='var(--color-bg-surface)'\"
                 />
               ` : `<div class="cast-image" style="background-color: var(--color-bg-surface);"></div>`}
               <p class="cast-name">${this.escapeHtml(member.name)}</p>
@@ -290,11 +293,12 @@ class MoviePage extends AfroFlicks {
           <div class="cast-member">
             ${member.profile_path ? `
               <img 
-                src="${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.TMDB_IMAGE_SIZES.profile}${member.profile_path}"
+                src="https://image.tmdb.org/t/p/w185${member.profile_path}"
                 alt="${this.escapeHtml(member.name)}"
                 class="cast-image"
                 loading="lazy"
-                onerror="this.src='assets/images/placeholder.png'"
+                crossorigin="anonymous"
+                onerror="this.style.backgroundColor='var(--color-bg-surface)'"
               />
             ` : `<div class="cast-image" style="background-color: var(--color-bg-surface);"></div>`}
             <p class="cast-name">${this.escapeHtml(member.name)}</p>
@@ -345,11 +349,12 @@ class MoviePage extends AfroFlicks {
             ${countryData.flatrate.map(provider => `
               <div class="provider-item">
                 <img 
-                  src="${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.TMDB_IMAGE_SIZES.logo}${provider.logo_path}"
+                  src="https://image.tmdb.org/t/p/w200${provider.logo_path}"
                   alt="${provider.provider_name}"
                   class="provider-logo"
                   title="${provider.provider_name}"
                   loading="lazy"
+                  crossorigin="anonymous"
                 />
                 <span class="provider-name">${provider.provider_name}</span>
               </div>
@@ -367,11 +372,12 @@ class MoviePage extends AfroFlicks {
             ${countryData.buy.map(provider => `
               <div class="provider-item">
                 <img 
-                  src="${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.TMDB_IMAGE_SIZES.logo}${provider.logo_path}"
+                  src="https://image.tmdb.org/t/p/w200${provider.logo_path}"
                   alt="${provider.provider_name}"
                   class="provider-logo"
                   title="${provider.provider_name}"
                   loading="lazy"
+                  crossorigin="anonymous"
                 />
                 <span class="provider-name">${provider.provider_name}</span>
               </div>
@@ -389,11 +395,12 @@ class MoviePage extends AfroFlicks {
             ${countryData.rent.map(provider => `
               <div class="provider-item">
                 <img 
-                  src="${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.TMDB_IMAGE_SIZES.logo}${provider.logo_path}"
+                  src="https://image.tmdb.org/t/p/w200${provider.logo_path}"
                   alt="${provider.provider_name}"
                   class="provider-logo"
                   title="${provider.provider_name}"
                   loading="lazy"
+                  crossorigin="anonymous"
                 />
                 <span class="provider-name">${provider.provider_name}</span>
               </div>
