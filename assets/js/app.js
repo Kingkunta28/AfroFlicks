@@ -505,7 +505,7 @@ class AfroFlicks {
 }
 
 // Initialize app when DOM is ready
-let app;
-document.addEventListener('DOMContentLoaded', () => {
-  app = new AfroFlicks();
-});
+//let app;
+//document.addEventListener('DOMContentLoaded', () => {
+  //app = new AfroFlicks();
+//});
